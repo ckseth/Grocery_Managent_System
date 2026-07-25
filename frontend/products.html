@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse All Groceries - GroceryGo</title>
+  <meta name="description" content="Explore fresh organic grocery products. Filter by category, price, brand, rating, and sort by discount or price.">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="page-preloader">
+    <div class="spinner-glow mb-3"></div>
+    <h5 class="fw-bold text-success">Grocery<span class="text-info">Go</span></h5>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top gg-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+        <i class="bi bi-cart-emerald me-2 text-success"></i>Grocery<span class="text-info">Go</span>
+      </a>
+      
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="navbarOffcanvas">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title fw-bold text-success">GroceryGo Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="products.html">Browse Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="offers.html">Offers & Deals</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+            <div class="navbar-auth-container me-1"></div>
+
+            <div class="input-group search-bar-nav d-none d-xl-flex me-1" style="width: 220px;">
+              <input type="text" class="form-control form-control-sm global-search-input" placeholder="Live search groceries...">
+              <button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-search"></i></button>
+            </div>
+
+            <button class="btn btn-outline-custom theme-toggle-btn p-2" title="Toggle Light/Dark Theme">
+              <i class="bi bi-moon-stars fs-5"></i>
+            </button>
+
+            <a href="wishlist.html" class="btn btn-outline-custom position-relative p-2" title="Wishlist">
+              <i class="bi bi-heart fs-5"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count-badge" style="display:none;">0</span>
+            </a>
+
+            <a href="cart.html" class="btn btn-outline-custom position-relative p-2" title="Shopping Cart">
+              <i class="bi bi-basket fs-5"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge" style="display:none;">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Banner -->
+  <section class="bg-light py-4 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1 small">
+              <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active">Products Catalog</li>
+            </ol>
+          </nav>
+          <h2 class="fw-bold mb-0">Browse All Groceries</h2>
+        </div>
+        <p class="text-muted small mb-0 mt-2 mt-md-0">Live filter by category, brand, price, rating, or keywords</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Content -->
+  <main class="py-4">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Sidebar Filters -->
+        <div class="col-lg-3">
+          <div class="glass-card p-4 sticky-top" style="top: 90px; z-index: 10;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold mb-0"><i class="bi bi-sliders me-2 text-success"></i>Filters</h5>
+              <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none" id="reset-filters-btn">Reset All</button>
+            </div>
+
+            <!-- Live Search Filter -->
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Live Search (Name, Brand, Desc)</label>
+              <div class="input-group">
+                <input type="text" id="filter-search-input" class="form-control form-control-sm" placeholder="Type to search live...">
+                <button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-search"></i></button>
+              </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Categories</label>
+              <div id="category-checkboxes" class="d-flex flex-column gap-2 max-h-200 overflow-y-auto">
+                <!-- Dynamically Populated -->
+              </div>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label small fw-bold mb-0">Max Price</label>
+                <span class="fw-bold text-success small" id="price-range-val">$25.00</span>
+              </div>
+              <input type="range" class="form-range" id="price-range-slider" min="1" max="30" step="0.5" value="25">
+              <div class="d-flex justify-content-between text-muted small">
+                <span>$1.00</span>
+                <span>$30.00</span>
+              </div>
+            </div>
+
+            <!-- Brand Filter -->
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Brands</label>
+              <div id="brand-checkboxes" class="d-flex flex-column gap-2" style="max-height: 160px; overflow-y: auto;">
+                <!-- Dynamically Populated -->
+              </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Minimum Rating</label>
+              <select class="form-select form-select-sm" id="filter-rating-select">
+                <option value="0">All Ratings</option>
+                <option value="4.5">4.5★ & Above</option>
+                <option value="4.0">4.0★ & Above</option>
+                <option value="3.5">3.5★ & Above</option>
+              </select>
+            </div>
+
+            <!-- In Stock Checkbox -->
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" id="filter-instock-checkbox" checked>
+              <label class="form-check-label small fw-bold" for="filter-instock-checkbox">In Stock Only</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid & Controls -->
+        <div class="col-lg-9">
+          
+          <!-- Top Sort & Controls Bar -->
+          <div class="glass-card p-3 mb-4 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+            <div class="text-muted small fw-semibold">
+              Found <span id="products-count-badge" class="badge bg-success">0</span> items matching criteria
+            </div>
+            
+            <div class="d-flex align-items-center gap-3">
+              <label class="small text-muted mb-0 text-nowrap">Sort By:</label>
+              <select class="form-select form-select-sm" id="sort-by-select" style="width: 180px;">
+                <option value="default">Featured / Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">Newest Arrival</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Cards Container -->
+          <div class="row" id="products-grid-container">
+            <!-- Dynamic Products HTML -->
+          </div>
+
+          <!-- Empty State: No Products Found -->
+          <div id="no-products-found" class="text-center py-5 glass-card" style="display: none;">
+            <i class="bi bi-search fs-1 text-muted"></i>
+            <h4 class="fw-bold mt-3">No Products Found</h4>
+            <p class="text-muted">No items matched your search query or category filters.</p>
+            <button class="btn btn-primary-custom btn-sm mt-2" onclick="document.getElementById('reset-filters-btn').click();">Clear All Filters</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content glass-card border-0">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0 text-center">
+              <img id="qv-img" src="" alt="" class="img-fluid rounded-3 shadow-sm" style="max-height: 320px; object-fit: cover;">
+            </div>
+            <div class="col-md-6">
+              <span id="qv-category" class="badge bg-soft-primary mb-2">Category</span>
+              <h4 id="qv-title" class="fw-bold mb-2">Product Title</h4>
+              <div class="text-muted small mb-2">Brand: <span id="qv-brand" class="fw-semibold text-main">Brand Name</span></div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span id="qv-price" class="fs-3 fw-bold text-success">$0.00</span>
+                <span id="qv-original-price" class="text-muted text-decoration-line-through"></span>
+              </div>
+              <div class="d-flex align-items-center gap-1 mb-3 text-warning">
+                <i class="bi bi-star-fill"></i>
+                <span id="qv-rating" class="fw-bold text-main">4.8</span>
+                <span id="qv-reviews" class="text-muted small ms-1">(0 reviews)</span>
+              </div>
+              <p id="qv-description" class="text-muted small mb-4">Description text...</p>
+              <div class="d-flex align-items-center gap-3">
+                <div class="quantity-control">
+                  <button type="button" onclick="const input = document.getElementById('qv-qty-input'); input.value = Math.max(1, parseInt(input.value)-1);"><i class="bi bi-dash"></i></button>
+                  <input type="number" id="qv-qty-input" value="1" min="1" readonly>
+                  <button type="button" onclick="const input = document.getElementById('qv-qty-input'); input.value = parseInt(input.value)+1;"><i class="bi bi-plus"></i></button>
+                </div>
+                <button id="qv-add-cart-btn" class="btn btn-primary-custom flex-grow-1">
+                  <i class="bi bi-basket me-2"></i> Add to Cart (<span id="qv-unit"></span>)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted small">&copy; 2026 GroceryGo Inc. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramSearch = urlParams.get("search") || "";
+      const paramCategory = (urlParams.get("category") || urlParams.get("cat") || "").toLowerCase();
+
+      // Populate Category Checkboxes
+      const catCheckboxesContainer = document.getElementById("category-checkboxes");
+      catCheckboxesContainer.innerHTML = GROCERY_CATEGORIES.map(c => `
+        <div class="form-check">
+          <input class="form-check-input filter-category-cb" type="checkbox" value="${c.id.toLowerCase()}" id="cat-cb-${c.id}" ${paramCategory === c.id.toLowerCase() || paramCategory === c.name.toLowerCase() ? 'checked' : ''}>
+          <label class="form-check-label small" for="cat-cb-${c.id}">${c.name}</label>
+        </div>
+      `).join("");
+
+      // Populate Brand Checkboxes
+      const brandsSet = [...new Set(GROCERY_PRODUCTS.map(p => p.brand))];
+      const brandCheckboxesContainer = document.getElementById("brand-checkboxes");
+      brandCheckboxesContainer.innerHTML = brandsSet.map((brand, i) => `
+        <div class="form-check">
+          <input class="form-check-input filter-brand-cb" type="checkbox" value="${brand}" id="brand-cb-${i}">
+          <label class="form-check-label small" for="brand-cb-${i}">${brand}</label>
+        </div>
+      `).join("");
+
+      const searchInput = document.getElementById("filter-search-input");
+      const priceSlider = document.getElementById("price-range-slider");
+      const priceValDisplay = document.getElementById("price-range-val");
+      const ratingSelect = document.getElementById("filter-rating-select");
+      const inStockCheckbox = document.getElementById("filter-instock-checkbox");
+      const sortBySelect = document.getElementById("sort-by-select");
+      const gridContainer = document.getElementById("products-grid-container");
+      const countBadge = document.getElementById("products-count-badge");
+      const noFoundState = document.getElementById("no-products-found");
+      const resetBtn = document.getElementById("reset-filters-btn");
+
+      if (paramSearch) searchInput.value = paramSearch;
+
+      priceSlider.addEventListener("input", (e) => {
+        priceValDisplay.textContent = `$${parseFloat(e.target.value).toFixed(2)}`;
+        applyFilters();
+      });
+
+      // Live search while typing
+      searchInput.addEventListener("input", applyFilters);
+      ratingSelect.addEventListener("change", applyFilters);
+      inStockCheckbox.addEventListener("change", applyFilters);
+      sortBySelect.addEventListener("change", applyFilters);
+
+      document.querySelectorAll(".filter-category-cb, .filter-brand-cb").forEach(cb => {
+        cb.addEventListener("change", applyFilters);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        priceSlider.value = 30;
+        priceValDisplay.textContent = "$30.00";
+        ratingSelect.value = "0";
+        inStockCheckbox.checked = false;
+        sortBySelect.value = "default";
+        document.querySelectorAll(".filter-category-cb, .filter-brand-cb").forEach(cb => cb.checked = false);
+        applyFilters();
+      });
+
+      function applyFilters() {
+        let filtered = [...GROCERY_PRODUCTS];
+
+        // Search while typing: Name, Category, Brand, Description
+        const query = searchInput.value.trim().toLowerCase();
+        if (query) {
+          filtered = filtered.filter(p => 
+            p.name.toLowerCase().includes(query) ||
+            (p.category && p.category.toLowerCase().includes(query)) ||
+            (p.brand && p.brand.toLowerCase().includes(query)) ||
+            (p.description && p.description.toLowerCase().includes(query))
+          );
+        }
+
+        // Category Filter
+        const selectedCategories = Array.from(document.querySelectorAll(".filter-category-cb:checked")).map(cb => cb.value.toLowerCase());
+        if (selectedCategories.length > 0) {
+          filtered = filtered.filter(p => selectedCategories.includes((p.category || '').toLowerCase()));
+        }
+
+        // Brand Filter
+        const selectedBrands = Array.from(document.querySelectorAll(".filter-brand-cb:checked")).map(cb => cb.value);
+        if (selectedBrands.length > 0) {
+          filtered = filtered.filter(p => selectedBrands.includes(p.brand));
+        }
+
+        // Max Price
+        const maxPrice = parseFloat(priceSlider.value);
+        filtered = filtered.filter(p => (p.discountPrice || p.price) <= maxPrice);
+
+        // Rating
+        const minRating = parseFloat(ratingSelect.value);
+        if (minRating > 0) {
+          filtered = filtered.filter(p => p.rating >= minRating);
+        }
+
+        // In Stock
+        if (inStockCheckbox.checked) {
+          filtered = filtered.filter(p => p.availability === "In Stock");
+        }
+
+        // Sorting
+        const sortVal = sortBySelect.value;
+        if (sortVal === "price-low") {
+          filtered.sort((a, b) => (a.discountPrice || a.price) - (b.discountPrice || b.price));
+        } else if (sortVal === "price-high") {
+          filtered.sort((a, b) => (b.discountPrice || b.price) - (a.discountPrice || a.price));
+        } else if (sortVal === "rating") {
+          filtered.sort((a, b) => b.rating - a.rating);
+        } else if (sortVal === "newest") {
+          filtered.sort((a, b) => b.reviewCount - a.reviewCount);
+        }
+
+        // Render Results
+        countBadge.textContent = filtered.length;
+
+        if (filtered.length === 0) {
+          gridContainer.innerHTML = "";
+          noFoundState.style.display = "block";
+        } else {
+          noFoundState.style.display = "none";
+          gridContainer.innerHTML = filtered.map(p => createProductCardHTML(p)).join("");
+        }
+      }
+
+      applyFilters();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "grocery-delivery",
+  "version": "1.0.0",
+  "description": "GroceryGo Food & Organic Grocery Delivery Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "npm --prefix backend run dev",
+    "start": "npm --prefix backend start",
+    "backend": "npm --prefix backend run dev",
+    "seed": "npm --prefix backend run seed",
+    "frontend": "npx -y serve frontend -p 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,106 @@
+{
+  "categories": [
+    { "categoryId": "vegetables", "name": "Organic Vegetables", "slug": "vegetables", "icon": "bi-flower1", "count": 12 },
+    { "categoryId": "fruits", "name": "Fresh Fruits", "slug": "fruits", "icon": "bi-apple", "count": 10 },
+    { "categoryId": "dairy", "name": "Dairy & Eggs", "slug": "dairy", "icon": "bi-egg-fried", "count": 8 },
+    { "categoryId": "bakery", "name": "Fresh Bakery", "slug": "bakery", "icon": "bi-cup-hot", "count": 6 },
+    { "categoryId": "beverages", "name": "Cold Beverages", "slug": "beverages", "icon": "bi-cup-straw", "count": 6 },
+    { "categoryId": "meat", "name": "Meat & Seafood", "slug": "meat", "icon": "bi-slash-circle", "count": 4 },
+    { "categoryId": "snacks", "name": "Snacks & Munchies", "slug": "snacks", "icon": "bi-box-seam", "count": 4 },
+    { "categoryId": "pantry", "name": "Pantry Staples", "slug": "pantry", "icon": "bi-basket", "count": 2 }
+  ],
+  "brands": [
+    { "name": "Green Valley Organics", "description": "100% Certified Organic Farm Produce" },
+    { "name": "Sunshine Orchards", "description": "Sweet Fresh Handpicked Fruits" },
+    { "name": "Farmhouse Dairy", "description": "Pure Organic Pasteurized Dairy Products" },
+    { "name": "Artisan Bakery Co.", "description": "Freshly Baked Sourdough & Pastries" }
+  ],
+  "coupons": [
+    { "code": "FRESH20", "discountPercentage": 20, "usageLimit": 1000 },
+    { "code": "GROCERY10", "discountPercentage": 15, "usageLimit": 500 },
+    { "code": "FREESHIP", "discountPercentage": 10, "usageLimit": 2000 }
+  ],
+  "offers": [
+    { "code": "FRESH20", "title": "20% OFF Entire Order", "description": "Get 20% discount on all organic items", "discountType": "percent", "discountValue": 20 },
+    { "code": "GROCERY10", "title": "$10 OFF Orders > $30", "description": "$10 flat discount on orders over $30", "discountType": "fixed", "discountValue": 10, "minOrderValue": 30 },
+    { "code": "FREESHIP", "title": "Free Express Shipping", "description": "Waive all delivery fees", "discountType": "shipping", "discountValue": 100 }
+  ],
+  "products": [
+    {
+      "productId": "p1",
+      "name": "Organic Farm Fresh Broccoli",
+      "slug": "organic-farm-fresh-broccoli",
+      "category": "vegetables",
+      "brand": "Green Valley Organics",
+      "price": 3.49,
+      "discountPrice": 2.79,
+      "unit": "1 lb bunch",
+      "stock": 150,
+      "rating": 4.8,
+      "reviewCount": 124,
+      "availability": "In Stock",
+      "badge": "20% OFF",
+      "isOrganic": true,
+      "isFeatured": true,
+      "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=400&q=80",
+      "description": "Crisp, nutrient-rich organic broccoli harvested fresh daily from certified sustainable local farms."
+    },
+    {
+      "productId": "p2",
+      "name": "Red Vine Ripened Tomatoes",
+      "slug": "red-vine-ripened-tomatoes",
+      "category": "vegetables",
+      "brand": "Green Valley Organics",
+      "price": 2.99,
+      "discountPrice": 2.29,
+      "unit": "1 lb",
+      "stock": 200,
+      "rating": 4.7,
+      "reviewCount": 98,
+      "availability": "In Stock",
+      "badge": "FRESH",
+      "isOrganic": true,
+      "isFeatured": true,
+      "image": "https://images.unsplash.com/photo-1546470427-227c7369a657?auto=format&fit=crop&w=400&q=80",
+      "description": "Juicy vine-ripened red tomatoes perfect for salads, pasta sauces, and gourmet sandwiches."
+    },
+    {
+      "productId": "p8",
+      "name": "Crisp Honeycrisp Apples",
+      "slug": "crisp-honeycrisp-apples",
+      "category": "fruits",
+      "brand": "Sunshine Orchards",
+      "price": 4.99,
+      "discountPrice": 3.99,
+      "unit": "2 lb bag",
+      "stock": 120,
+      "rating": 4.9,
+      "reviewCount": 210,
+      "availability": "In Stock",
+      "badge": "BESTSELLER",
+      "isOrganic": true,
+      "isFeatured": true,
+      "image": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=400&q=80",
+      "description": "Sweet, extra crisp Honeycrisp apples packed with antioxidants and natural orchard fresh flavor."
+    },
+    {
+      "productId": "p15",
+      "name": "Whole Organic Pasteurized Milk",
+      "slug": "whole-organic-pasteurized-milk",
+      "category": "dairy",
+      "brand": "Farmhouse Dairy",
+      "price": 4.29,
+      "discountPrice": 3.69,
+      "unit": "0.5 Gallon",
+      "stock": 80,
+      "rating": 4.9,
+      "reviewCount": 175,
+      "availability": "In Stock",
+      "badge": "ORGANIC",
+      "isOrganic": true,
+      "isFeatured": true,
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&q=80",
+      "description": "Rich, creamy whole milk sourced from pasture-raised grass-fed cows. No hormones or antibiotics."
+    }
+  ]
+}

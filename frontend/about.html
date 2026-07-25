@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - GroceryGo</title>
+  <meta name="description" content="Learn about GroceryGo's mission to deliver fresh farm-to-table organic produce with zero emissions and peak freshness.">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="page-preloader">
+    <div class="spinner-glow mb-3"></div>
+    <h5 class="fw-bold text-success">Grocery<span class="text-info">Go</span></h5>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top gg-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+        <i class="bi bi-cart-emerald me-2 text-success"></i>Grocery<span class="text-info">Go</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="navbarOffcanvas">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title fw-bold text-success">GroceryGo Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Browse Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="offers.html">Offers & Deals</a></li>
+            <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+            <button class="btn btn-outline-custom theme-toggle-btn px-3">
+              <i class="bi bi-moon-stars"></i>
+            </button>
+            <a href="wishlist.html" class="btn btn-outline-custom position-relative px-3">
+              <i class="bi bi-heart"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count-badge" style="display:none;">0</span>
+            </a>
+            <button class="btn btn-primary-custom position-relative px-3" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+              <i class="bi bi-basket me-1"></i> Cart
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge" style="display:none;">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-section py-5">
+    <div class="container text-center">
+      <span class="badge bg-success px-3 py-2 fs-6 mb-2">OUR STORY & MISSION</span>
+      <h1 class="display-4 fw-extrabold mb-3">Reinventing Fresh Food Delivery</h1>
+      <p class="lead text-muted max-w-700 mx-auto">Founded with a vision to connect sustainable organic local farms directly with households in under 45 minutes.</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <main class="py-5">
+    <div class="container">
+      
+      <!-- Grid Row -->
+      <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-6">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Farm Fresh" class="img-fluid rounded-4 shadow-lg w-100">
+        </div>
+        <div class="col-lg-6">
+          <h2 class="fw-bold mb-3">Fresh Farm to Doorstep in 45 Minutes</h2>
+          <p class="text-muted mb-4">GroceryGo was launched to eliminate long supermarket queues and outdated store inventory. We partner with certified local organic growers to pick produce at peak nutritional ripeness every morning.</p>
+          
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="glass-card p-3">
+                <i class="bi bi-flower1 fs-2 text-success mb-2"></i>
+                <h5 class="fw-bold mb-1">100% Organic</h5>
+                <p class="text-muted small mb-0">Zero pesticides or artificial preservatives.</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="glass-card p-3">
+                <i class="bi bi-truck fs-2 text-info mb-2"></i>
+                <h5 class="fw-bold mb-1">Zero Emissions</h5>
+                <p class="text-muted small mb-0">100% EV delivery fleet for eco-friendly shipping.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Leadership Team -->
+      <div class="py-4">
+        <div class="text-center mb-5">
+          <h3 class="fw-bold">Meet Our Leadership Team</h3>
+          <p class="text-muted">The passionate foodies and engineers behind GroceryGo</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="glass-card p-4 text-center h-100">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Founder" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;">
+              <h5 class="fw-bold mb-1">Emma Watson</h5>
+              <small class="text-success fw-bold d-block mb-2">Co-Founder & CEO</small>
+              <p class="text-muted small">Ex-Agritech innovator passionate about sustainable local farming networks.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="glass-card p-4 text-center h-100">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="CTO" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;">
+              <h5 class="fw-bold mb-1">Marcus Vance</h5>
+              <small class="text-info fw-bold d-block mb-2">Chief Technology Officer</small>
+              <p class="text-muted small">Senior Systems Architect specialized in real-time supply chain logistics.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="glass-card p-4 text-center h-100">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Head of Operations" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;">
+              <h5 class="fw-bold mb-1">Sophia Chen</h5>
+              <small class="text-warning fw-bold d-block mb-2">Head of Quality Control</small>
+              <p class="text-muted small">Ensures 100% freshness compliance across all fulfillment hubs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Offcanvas Cart Drawer -->
+  <div class="offcanvas offcanvas-end glass-card" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold"><i class="bi bi-basket me-2 text-success"></i> Your Cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body" id="offcanvas-cart-items"></div>
+    <div class="offcanvas-footer p-3 border-top bg-surface">
+      <div class="d-flex justify-content-between mb-3">
+        <span class="fw-bold">Subtotal:</span>
+        <span class="fw-bold text-success fs-5" id="offcanvas-cart-subtotal">$0.00</span>
+      </div>
+      <div class="d-grid gap-2">
+        <a href="cart.html" class="btn btn-outline-custom">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary-custom">Checkout Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted small">&copy; 2026 GroceryGo Inc. All rights reserved.</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

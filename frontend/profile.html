@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - GroceryGo</title>
+  <meta name="description" content="Manage your GroceryGo user profile, default shipping addresses, and account settings.">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="page-preloader">
+    <div class="spinner-glow mb-3"></div>
+    <h5 class="fw-bold text-success">Grocery<span class="text-info">Go</span></h5>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top gg-navbar">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+        <i class="bi bi-cart-emerald me-2 text-success"></i>Grocery<span class="text-info">Go</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="navbarOffcanvas">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title fw-bold text-success">GroceryGo Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Browse Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="offers.html">Offers & Deals</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+            <div class="navbar-auth-container me-1"></div>
+            <button class="btn btn-outline-custom theme-toggle-btn px-3">
+              <i class="bi bi-moon-stars"></i>
+            </button>
+            <a href="wishlist.html" class="btn btn-outline-custom position-relative px-3">
+              <i class="bi bi-heart"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count-badge" style="display:none;">0</span>
+            </a>
+            <button class="btn btn-primary-custom position-relative px-3" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+              <i class="bi bi-basket me-1"></i> Cart
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge" style="display:none;">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Sidebar Profile Card -->
+        <div class="col-lg-4">
+          <div class="glass-card p-4 text-center">
+            <div class="user-avatar-large mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold fs-1 text-white shadow-sm" id="profile-avatar-box" style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981, #06b6d4);">
+              U
+            </div>
+            <h4 class="fw-bold mb-1" id="profile-display-name">User Name</h4>
+            <p class="text-muted small mb-2" id="profile-display-email">user@example.com</p>
+            <span class="badge px-3 py-2 rounded-pill mb-3" id="profile-role-badge"><i class="bi bi-star-fill me-1"></i> Member</span>
+            
+            <div class="d-grid gap-2 border-top pt-3">
+              <!-- Admin Dashboard Direct Shortcut (Shown if Admin) -->
+              <div id="admin-shortcut-box" style="display: none;">
+                <a href="admin-dashboard.html" class="btn btn-danger btn-sm w-100 fw-bold mb-2">
+                  <i class="bi bi-speedometer2 me-2"></i> Go to Admin Dashboard
+                </a>
+              </div>
+
+              <a href="orders.html" class="btn btn-outline-custom btn-sm text-start"><i class="bi bi-box-seam me-2"></i> My Orders History</a>
+              <a href="wishlist.html" class="btn btn-outline-custom btn-sm text-start"><i class="bi bi-heart me-2"></i> Saved Wishlist</a>
+              <a href="order-tracking.html" class="btn btn-outline-custom btn-sm text-start"><i class="bi bi-geo-alt me-2"></i> Live Order Tracker</a>
+              <button type="button" class="btn btn-outline-danger btn-sm text-start mt-2 logout-action-btn"><i class="bi bi-box-arrow-right me-2"></i> Sign Out</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Details Tabs -->
+        <div class="col-lg-8">
+          <div class="glass-card p-4">
+            <ul class="nav nav-tabs border-bottom mb-4" id="profileTabs" role="tablist">
+              <li class="nav-item">
+                <button class="nav-link active fw-semibold" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal-pane">
+                  <i class="bi bi-person me-1"></i> Profile Information
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link fw-semibold" id="addresses-tab" data-bs-toggle="tab" data-bs-target="#addresses-pane">
+                  <i class="bi bi-geo-alt me-1"></i> Saved Addresses
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="profileTabsContent">
+              <!-- Tab 1: Personal Info -->
+              <div class="tab-pane fade show active" id="personal-pane">
+                <form id="profile-info-form" onsubmit="handleSaveProfile(event)">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-bold">Full Name</label>
+                      <input type="text" class="form-control" id="form-fullname" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-bold">Email Address</label>
+                      <input type="email" class="form-control" id="form-email" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-bold">Phone Number</label>
+                      <input type="tel" class="form-control" id="form-phone" required placeholder="+1 (555) 234-5678">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-bold">Account Role</label>
+                      <input type="text" class="form-control bg-light" id="form-role" readonly>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary-custom btn-sm mt-4">
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+
+              <!-- Tab 2: Addresses -->
+              <div class="tab-pane fade" id="addresses-pane">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="fw-bold mb-0">Delivery Addresses</h6>
+                  <button class="btn btn-outline-custom btn-sm" onclick="showToast('Address feature updated!', 'info');"><i class="bi bi-plus-lg me-1"></i> Add Address</button>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="border rounded p-3 bg-light position-relative">
+                      <span class="badge bg-success mb-2">DEFAULT ADDRESS</span>
+                      <h6 class="fw-bold mb-1" id="addr-name-display">User</h6>
+                      <p class="text-muted small mb-1">742 Evergreen Terrace, Springfield, OR 97477</p>
+                      <small class="text-muted" id="addr-phone-display"><i class="bi bi-telephone me-1"></i> +1 (555) 234-5678</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Offcanvas Cart Drawer -->
+  <div class="offcanvas offcanvas-end glass-card" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold"><i class="bi bi-basket me-2 text-success"></i> Your Cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body" id="offcanvas-cart-items"></div>
+    <div class="offcanvas-footer p-3 border-top bg-surface">
+      <div class="d-flex justify-content-between mb-3">
+        <span class="fw-bold">Subtotal:</span>
+        <span class="fw-bold text-success fs-5" id="offcanvas-cart-subtotal">$0.00</span>
+      </div>
+      <div class="d-grid gap-2">
+        <a href="cart.html" class="btn btn-outline-custom">View Cart</a>
+        <a href="checkout.html" class="btn btn-primary-custom">Checkout Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted small">&copy; 2026 GroceryGo Inc. All rights reserved.</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProfileDetails();
+    });
+
+    function renderProfileDetails() {
+      const user = store.getUser();
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      const isAdmin = user.role === 'admin' || user.isAdmin === true;
+      const initial = user.name ? user.name.trim().charAt(0).toUpperCase() : 'U';
+
+      const avatarBox = document.getElementById("profile-avatar-box");
+      if (isAdmin) {
+        avatarBox.style.background = "linear-gradient(135deg, #dc3545, #b02a37)";
+        document.getElementById("admin-shortcut-box").style.display = "block";
+      } else {
+        avatarBox.style.background = "linear-gradient(135deg, #10b981, #06b6d4)";
+        document.getElementById("admin-shortcut-box").style.display = "none";
+      }
+      avatarBox.textContent = initial;
+
+      document.getElementById("profile-display-name").textContent = user.name || "User Account";
+      document.getElementById("profile-display-email").textContent = user.email || "user@example.com";
+      document.getElementById("addr-name-display").textContent = user.name || "User";
+      document.getElementById("addr-phone-display").innerHTML = `<i class="bi bi-telephone me-1"></i> ${user.phone || '+1 (555) 234-5678'}`;
+
+      const badgeEl = document.getElementById("profile-role-badge");
+      if (isAdmin) {
+        badgeEl.className = "badge bg-danger px-3 py-2 rounded-pill mb-3";
+        badgeEl.innerHTML = `<i class="bi bi-shield-check me-1"></i> Admin Portal Manager`;
+      } else {
+        badgeEl.className = "badge bg-warning text-dark px-3 py-2 rounded-pill mb-3";
+        badgeEl.innerHTML = `<i class="bi bi-star-fill me-1"></i> Gold Member`;
+      }
+
+      document.getElementById("form-fullname").value = user.name || "";
+      document.getElementById("form-email").value = user.email || "";
+      document.getElementById("form-phone").value = user.phone || "+1 (555) 234-5678";
+      document.getElementById("form-role").value = isAdmin ? "Administrator" : "Customer";
+    }
+
+    function handleSaveProfile(e) {
+      e.preventDefault();
+      const newName = document.getElementById("form-fullname").value.trim();
+      const newEmail = document.getElementById("form-email").value.trim();
+      const newPhone = document.getElementById("form-phone").value.trim();
+
+      const user = store.getUser() || {};
+      user.name = newName;
+      user.email = newEmail;
+      user.phone = newPhone;
+      user.isLoggedIn = true;
+
+      store.save(store.USER_KEY, user);
+      store.user = user;
+
+      showToast("Profile details & Phone number updated successfully!", "success");
+      renderProfileDetails();
+      renderNavbarAuth();
+    }
+  </script>
+</body>
+</html>

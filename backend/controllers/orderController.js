@@ -112,16 +112,22 @@ exports.getMyOrders = async (req, res, next) => {
   }
 };
 
+// Helper to find order safely by _id or orderId
+const findOrderByIdOrString = async (idParam) => {
+  const isObjectId = typeof idParam === 'string' && /^[0-9a-fA-F]{24}$/.test(idParam);
+  return await Order.findOne({
+    $or: [{ _id: isObjectId ? idParam : null }, { orderId: idParam }]
+  });
+};
+
 // @desc    Get order details by ID
 // @route   GET /api/orders/:id
 // @access  Private
 exports.getOrderById = async (req, res, next) => {
   try {
+    const isObjectId = typeof req.params.id === 'string' && /^[0-9a-fA-F]{24}$/.test(req.params.id);
     const order = await Order.findOne({
-      $or: [
-        { _id: req.params.id.match(/^[0-9a-fA-F]{24}$/) ? req.params.id : null },
-        { orderId: req.params.id }
-      ]
+      $or: [{ _id: isObjectId ? req.params.id : null }, { orderId: req.params.id }]
     }).populate('user', 'name email');
 
     if (!order) {
@@ -152,7 +158,7 @@ exports.getAllOrders = async (req, res, next) => {
 exports.updateOrderStatus = async (req, res, next) => {
   try {
     const { status } = req.body;
-    const order = await Order.findById(req.params.id);
+    const order = await findOrderByIdOrString(req.params.id);
 
     if (!order) {
       return res.status(404).json({ success: false, message: 'Order not found' });
@@ -179,7 +185,7 @@ exports.updateOrderStatus = async (req, res, next) => {
 // @access  Private
 exports.cancelOrder = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await findOrderByIdOrString(req.params.id);
 
     if (!order) {
       return res.status(404).json({ success: false, message: 'Order not found' });
@@ -207,7 +213,7 @@ exports.cancelOrder = async (req, res, next) => {
 // @access  Private
 exports.getInvoice = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await findOrderByIdOrString(req.params.id);
     if (!order) {
       return res.status(404).json({ success: false, message: 'Order not found' });
     }

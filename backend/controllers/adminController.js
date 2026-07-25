@@ -115,17 +115,23 @@ exports.getAllOrders = async (req, res, next) => {
 exports.updateDeliveryStatus = async (req, res, next) => {
   try {
     const { action, targetStatus, assignedPerson } = req.body;
-    const order = await Order.findById(req.params.id);
+    const targetId = req.params.id;
+    const isObjectId = typeof targetId === 'string' && /^[0-9a-fA-F]{24}$/.test(targetId);
+
+    const order = await Order.findOne({
+      $or: [{ _id: isObjectId ? targetId : null }, { orderId: targetId }]
+    });
 
     if (!order) {
       return res.status(404).json({ success: false, message: 'Order not found' });
     }
 
     if (assignedPerson) {
+      const currentAssigned = order.assignedDeliveryPerson || {};
       order.assignedDeliveryPerson = {
-        name: assignedPerson.name || order.assignedDeliveryPerson.name,
-        phone: assignedPerson.phone || order.assignedDeliveryPerson.phone,
-        vehicle: assignedPerson.vehicle || order.assignedDeliveryPerson.vehicle
+        name: assignedPerson.name || currentAssigned.name || 'Alex Morgan',
+        phone: assignedPerson.phone || currentAssigned.phone || '+1 (555) 234-5678',
+        vehicle: assignedPerson.vehicle || currentAssigned.vehicle || 'Eco-Express Scooter'
       };
     }
 

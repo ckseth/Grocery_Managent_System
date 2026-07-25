@@ -45,8 +45,13 @@ exports.addToCart = async (req, res, next) => {
   try {
     const { productId, quantity = 1 } = req.body;
 
+    if (!productId) {
+      return res.status(400).json({ success: false, message: 'productId is required' });
+    }
+
+    const isObjectId = typeof productId === 'string' && /^[0-9a-fA-F]{24}$/.test(productId);
     const product = await Product.findOne({
-      $or: [{ _id: productId.match(/^[0-9a-fA-F]{24}$/) ? productId : null }, { productId }]
+      $or: [{ _id: isObjectId ? productId : null }, { productId }]
     });
 
     if (!product) {
@@ -59,7 +64,7 @@ exports.addToCart = async (req, res, next) => {
     }
 
     const itemIndex = cart.items.findIndex(
-      (item) => item.product.toString() === product._id.toString() || item.productId === product.productId
+      (item) => (item.product && item.product.toString() === product._id.toString()) || item.productId === product.productId
     );
 
     if (itemIndex > -1) {
@@ -97,8 +102,9 @@ exports.updateCartQuantity = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Cart not found' });
     }
 
+    const targetId = req.params.productId;
     const itemIndex = cart.items.findIndex(
-      (item) => item.product.toString() === req.params.productId || item.productId === req.params.productId
+      (item) => (item.product && item.product.toString() === targetId) || item.productId === targetId
     );
 
     if (itemIndex > -1) {
@@ -129,8 +135,9 @@ exports.removeFromCart = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Cart not found' });
     }
 
+    const targetId = req.params.productId;
     cart.items = cart.items.filter(
-      (item) => item.product.toString() !== req.params.productId && item.productId !== req.params.productId
+      (item) => (item.product && item.product.toString() !== targetId) && item.productId !== targetId
     );
 
     recalculateCartTotals(cart);

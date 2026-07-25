@@ -91,10 +91,10 @@ exports.verifyRazorpayPayment = async (req, res) => {
 
   const secret = process.env.RAZORPAY_KEY_SECRET || 'sample_secret';
   const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+  hmac.update(`${razorpay_order_id || ''}|${razorpay_payment_id || ''}`);
   const generatedSignature = hmac.digest('hex');
 
-  if (generatedSignature === razorpay_signature || razorpay_order_id.startsWith('order_mock')) {
+  if (generatedSignature === razorpay_signature || (razorpay_order_id && razorpay_order_id.startsWith('order_mock'))) {
     res.json({ success: true, message: 'Razorpay Payment Verified Successfully' });
   } else {
     res.status(400).json({ success: false, message: 'Invalid payment signature verification failed' });

@@ -12,13 +12,14 @@ exports.getCategories = async (req, res, next) => {
   }
 };
 
-// @desc    Get single category by ID or slug
+// @desc    Get single category by ID, categoryId or slug
 // @route   GET /api/categories/:id
 // @access  Public
 exports.getCategoryById = async (req, res, next) => {
   try {
+    const isObjectId = typeof req.params.id === 'string' && /^[0-9a-fA-F]{24}$/.test(req.params.id);
     const category = await Category.findOne({
-      $or: [{ categoryId: req.params.id }, { slug: req.params.id }]
+      $or: [{ _id: isObjectId ? req.params.id : null }, { categoryId: req.params.id }, { slug: req.params.id }]
     });
 
     if (!category) {

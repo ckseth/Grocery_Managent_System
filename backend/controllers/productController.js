@@ -112,7 +112,11 @@ exports.getFeaturedProducts = async (req, res, next) => {
 // @access  Public
 exports.getRelatedProducts = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const isObjectId = typeof req.params.id === 'string' && /^[0-9a-fA-F]{24}$/.test(req.params.id);
+    const product = await Product.findOne({
+      $or: [{ _id: isObjectId ? req.params.id : null }, { productId: req.params.id }]
+    });
+
     if (!product) {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }

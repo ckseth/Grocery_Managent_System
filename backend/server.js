@@ -91,6 +91,7 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/payments', require('./routes/paymentRoutes'));
 app.use('/api', require('./routes/reviewRoutes'));
 app.use('/api/offers', require('./routes/offerRoutes'));
+app.use('/api/coupons', require('./routes/couponRoutes'));
 app.use('/api/inventory', require('./routes/inventoryRoutes'));
 
 // Error handling middleware

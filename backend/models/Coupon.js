@@ -9,9 +9,25 @@ const CouponSchema = new mongoose.Schema(
       uppercase: true,
       trim: true
     },
-    discountPercentage: {
+    discountType: {
+      type: String,
+      enum: ['percent', 'fixed', 'shipping'],
+      default: 'percent'
+    },
+    discountValue: {
       type: Number,
-      required: true
+      required: true,
+      default: 10
+    },
+    discountPercentage: {
+      type: Number
+    },
+    minOrderValue: {
+      type: Number,
+      default: 0
+    },
+    expiryDate: {
+      type: Date
     },
     usageLimit: {
       type: Number,

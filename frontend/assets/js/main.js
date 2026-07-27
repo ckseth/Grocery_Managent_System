@@ -298,8 +298,8 @@ function createProductCardHTML(product) {
           </div>
           <div class="product-footer">
             <div class="price-box">
-              <span class="current-price">$${price.toFixed(2)}</span>
-              ${price < origPrice ? `<span class="original-price">$${origPrice.toFixed(2)}</span>` : ''}
+              <span class="current-price">₹${price.toFixed(2)}</span>
+              ${price < origPrice ? `<span class="original-price">₹${origPrice.toFixed(2)}</span>` : ''}
             </div>
             <button class="btn btn-primary-custom btn-sm add-to-cart-btn" data-id="${product.id}">
               <i class="bi bi-basket me-1"></i> Add
@@ -336,8 +336,8 @@ function setupQuickViewModal() {
     if (qvTitle) qvTitle.textContent = product.name;
     if (qvCategory) qvCategory.textContent = product.category ? product.category.toUpperCase() : "GROCERY";
     if (qvBrand) qvBrand.textContent = product.brand || "";
-    if (qvPrice) qvPrice.textContent = `$${parseFloat(product.discountPrice || product.price || 0).toFixed(2)}`;
-    if (qvOriginalPrice) qvOriginalPrice.textContent = product.discountPrice < product.price ? `$${parseFloat(product.price).toFixed(2)}` : "";
+    if (qvPrice) qvPrice.textContent = `₹${parseFloat(product.discountPrice || product.price || 0).toFixed(2)}`;
+    if (qvOriginalPrice) qvOriginalPrice.textContent = product.discountPrice < product.price ? `₹${parseFloat(product.price).toFixed(2)}` : "";
     if (qvRating) qvRating.textContent = product.rating || "4.5";
     if (qvReviews) qvReviews.textContent = `(${product.reviewCount || 0} reviews)`;
     if (qvDescription) qvDescription.textContent = product.description || "";
@@ -377,7 +377,7 @@ function renderOffcanvasCart() {
         <a href="products.html" class="btn btn-sm btn-primary-custom">Start Shopping</a>
       </div>
     `;
-    if (cartSubtotal) cartSubtotal.textContent = "$0.00";
+    if (cartSubtotal) cartSubtotal.textContent = "₹0.00";
     return;
   }
 
@@ -390,9 +390,9 @@ function renderOffcanvasCart() {
       <img src="${item.image}" alt="${item.name}" class="offcanvas-cart-img">
       <div class="flex-grow-1">
         <h6 class="mb-1 fs-6">${item.name}</h6>
-        <div class="text-muted small">$${itemPrice.toFixed(2)} x ${itemQty}</div>
+        <div class="text-muted small">₹${itemPrice.toFixed(2)} x ${itemQty}</div>
       </div>
-      <div class="fw-bold text-success me-2">$${(itemPrice * itemQty).toFixed(2)}</div>
+      <div class="fw-bold text-success me-2">₹${(itemPrice * itemQty).toFixed(2)}</div>
       <button class="btn btn-link text-danger p-0" onclick="store.removeFromCart('${item.id}')">
         <i class="bi bi-trash"></i>
       </button>
@@ -401,7 +401,7 @@ function renderOffcanvasCart() {
     })
     .join("");
 
-  if (cartSubtotal) cartSubtotal.textContent = `$${totals.subtotal}`;
+  if (cartSubtotal) cartSubtotal.textContent = `₹${totals.subtotal}`;
 }
 
 // Setup Global Search bar with Live Type Search Support

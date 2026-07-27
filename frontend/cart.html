@@ -123,7 +123,7 @@
                 <input type="text" id="coupon-input" class="form-control form-control-sm text-uppercase" placeholder="e.g. FRESH20">
                 <button class="btn btn-primary-custom btn-sm" id="apply-coupon-btn">Apply</button>
               </div>
-              <div class="form-text small">Try <code class="text-success">FRESH20</code> or <code class="text-info">GROCERY10</code></div>
+              <div class="form-text small">Try <code class="text-success">SAVE10</code>, <code class="text-info">SAVE20</code>, or <code class="text-primary">FIRST50</code></div>
               <div id="applied-coupon-alert" class="alert alert-success py-2 mt-2 small d-flex justify-content-between align-items-center" style="display:none;">
                 <span><i class="bi bi-check-circle-fill me-1"></i> Coupon <strong id="applied-coupon-code"></strong> Active</span>
                 <button type="button" class="btn-close btn-close-white btn-sm" id="remove-coupon-btn"></button>
@@ -135,26 +135,26 @@
             <!-- Cost Breakdown -->
             <div class="d-flex justify-content-between mb-2">
               <span class="text-muted">Subtotal</span>
-              <span class="fw-semibold" id="summary-subtotal">$0.00</span>
+              <span class="fw-semibold" id="summary-subtotal">₹0.00</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-muted">Estimated Tax (5%)</span>
-              <span class="fw-semibold" id="summary-tax">$0.00</span>
+              <span class="fw-semibold" id="summary-tax">₹0.00</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
               <span class="text-muted">Delivery Charges</span>
-              <span class="fw-semibold text-success" id="summary-delivery">$0.00</span>
+              <span class="fw-semibold text-success" id="summary-delivery">₹0.00</span>
             </div>
             <div class="d-flex justify-content-between mb-2 text-danger" id="discount-row" style="display:none;">
               <span>Promo Discount</span>
-              <span class="fw-bold" id="summary-discount">-$0.00</span>
+              <span class="fw-bold" id="summary-discount">-₹0.00</span>
             </div>
 
             <hr class="my-3">
 
             <div class="d-flex justify-content-between mb-4">
               <span class="fw-bold fs-5">Grand Total</span>
-              <span class="fw-bold fs-4 text-success" id="summary-grandtotal">$0.00</span>
+              <span class="fw-bold fs-4 text-success" id="summary-grandtotal">₹0.00</span>
             </div>
 
             <a href="checkout.html" id="proceed-checkout-btn" class="btn btn-primary-custom w-100 py-2 fs-6">
@@ -259,7 +259,7 @@
                 </div>
               </div>
             </td>
-            <td class="fw-semibold">$${itemPrice.toFixed(2)}</td>
+            <td class="fw-semibold">₹${itemPrice.toFixed(2)}</td>
             <td class="text-center">
               <div class="quantity-control mx-auto">
                 <button onclick="store.updateQuantity('${item.id}', ${itemQty - 1})"><i class="bi bi-dash"></i></button>
@@ -267,7 +267,7 @@
                 <button onclick="store.updateQuantity('${item.id}', ${itemQty + 1})"><i class="bi bi-plus"></i></button>
               </div>
             </td>
-            <td class="text-end fw-bold text-success">$${itemTotal}</td>
+            <td class="text-end fw-bold text-success">₹${itemTotal}</td>
             <td class="text-end">
               <button class="btn btn-link text-danger p-0" onclick="store.removeFromCart('${item.id}')">
                 <i class="bi bi-trash fs-5"></i>
@@ -278,10 +278,10 @@
         }).join("");
 
         // Totals
-        document.getElementById("summary-subtotal").textContent = `$${totals.subtotal}`;
-        document.getElementById("summary-tax").textContent = `$${totals.tax}`;
-        document.getElementById("summary-delivery").textContent = totals.deliveryFee == 0 ? "FREE" : `$${totals.deliveryFee}`;
-        document.getElementById("summary-grandtotal").textContent = `$${totals.grandTotal}`;
+        document.getElementById("summary-subtotal").textContent = `₹${totals.subtotal}`;
+        document.getElementById("summary-tax").textContent = `₹${totals.tax}`;
+        document.getElementById("summary-delivery").textContent = totals.deliveryFee == 0 ? "FREE" : `₹${totals.deliveryFee}`;
+        document.getElementById("summary-grandtotal").textContent = `₹${totals.grandTotal}`;
 
         // Coupon Alert
         const couponAlert = document.getElementById("applied-coupon-alert");
@@ -293,7 +293,7 @@
           couponAlert.style.display = "flex";
           couponCodeSpan.textContent = totals.appliedCoupon;
           discountRow.style.display = "flex";
-          summaryDiscount.textContent = `-$${totals.discountAmount}`;
+          summaryDiscount.textContent = `-₹${totals.discountAmount}`;
         } else {
           couponAlert.style.display = "none";
           discountRow.style.display = "none";

@@ -134,7 +134,7 @@
             <div class="mt-4 p-3 bg-light rounded-3 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
               <div>
                 <span class="text-muted small">Total Payable Amount:</span>
-                <div class="fw-bold fs-4 text-success" id="pay-total-amount">$0.00</div>
+                <div class="fw-bold fs-4 text-success" id="pay-total-amount">₹0.00</div>
               </div>
 
               <button id="complete-order-btn" class="btn btn-primary-custom btn-lg px-5">
@@ -167,7 +167,7 @@
       }
 
       const totals = store.getCartTotals();
-      document.getElementById("pay-total-amount").textContent = `$${totals.grandTotal}`;
+      document.getElementById("pay-total-amount").textContent = `₹${totals.grandTotal}`;
 
       const completeBtn = document.getElementById("complete-order-btn");
 

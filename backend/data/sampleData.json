@@ -16,13 +16,19 @@
     { "name": "Artisan Bakery Co.", "description": "Freshly Baked Sourdough & Pastries" }
   ],
   "coupons": [
-    { "code": "FRESH20", "discountPercentage": 20, "usageLimit": 1000 },
-    { "code": "GROCERY10", "discountPercentage": 15, "usageLimit": 500 },
-    { "code": "FREESHIP", "discountPercentage": 10, "usageLimit": 2000 }
+    { "code": "SAVE10", "discountType": "percent", "discountValue": 10, "minOrderValue": 100, "usageLimit": 1000 },
+    { "code": "SAVE20", "discountType": "percent", "discountValue": 20, "minOrderValue": 200, "usageLimit": 1000 },
+    { "code": "FIRST50", "discountType": "fixed", "discountValue": 50, "minOrderValue": 150, "usageLimit": 500 },
+    { "code": "FRESH20", "discountType": "percent", "discountValue": 20, "minOrderValue": 0, "usageLimit": 1000 },
+    { "code": "GROCERY10", "discountType": "fixed", "discountValue": 10, "minOrderValue": 30, "usageLimit": 500 },
+    { "code": "FREESHIP", "discountType": "shipping", "discountValue": 100, "minOrderValue": 0, "usageLimit": 2000 }
   ],
   "offers": [
+    { "code": "SAVE10", "title": "10% OFF Orders > ₹100", "description": "Get 10% discount on orders above ₹100", "discountType": "percent", "discountValue": 10, "minOrderValue": 100 },
+    { "code": "SAVE20", "title": "20% OFF Orders > ₹200", "description": "Get 20% discount on orders above ₹200", "discountType": "percent", "discountValue": 20, "minOrderValue": 200 },
+    { "code": "FIRST50", "title": "₹50 OFF Orders > ₹150", "description": "Flat ₹50 discount on orders over ₹150", "discountType": "fixed", "discountValue": 50, "minOrderValue": 150 },
     { "code": "FRESH20", "title": "20% OFF Entire Order", "description": "Get 20% discount on all organic items", "discountType": "percent", "discountValue": 20 },
-    { "code": "GROCERY10", "title": "$10 OFF Orders > $30", "description": "$10 flat discount on orders over $30", "discountType": "fixed", "discountValue": 10, "minOrderValue": 30 },
+    { "code": "GROCERY10", "title": "₹10 OFF Orders > ₹30", "description": "₹10 flat discount on orders over ₹30", "discountType": "fixed", "discountValue": 10, "minOrderValue": 30 },
     { "code": "FREESHIP", "title": "Free Express Shipping", "description": "Waive all delivery fees", "discountType": "shipping", "discountValue": 100 }
   ],
   "products": [

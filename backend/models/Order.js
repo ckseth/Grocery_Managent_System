@@ -49,8 +49,10 @@ const OrderSchema = new mongoose.Schema(
         'Order Placed',
         'Order Confirmed',
         'Preparing Food',
+        'Processing',
         'Packed',
         'Out For Delivery',
+        'Out for Delivery',
         'Near Your Location',
         'Delivered',
         'Cancelled'
@@ -76,7 +78,7 @@ const OrderSchema = new mongoose.Schema(
     },
     estimatedDelivery: {
       type: String,
-      default: 'Today, within 30-45 mins'
+      default: 'Today, within 10 mins'
     },
     trackingTimeline: [
       {

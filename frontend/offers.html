@@ -52,10 +52,10 @@
               <i class="bi bi-heart"></i>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count-badge" style="display:none;">0</span>
             </a>
-            <button class="btn btn-primary-custom position-relative px-3" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+            <a href="cart.html" class="btn btn-primary-custom position-relative px-3" title="Shopping Cart">
               <i class="bi bi-basket me-1"></i> Cart
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge" style="display:none;">0</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -81,27 +81,55 @@
         <div class="col-md-4">
           <div class="glass-card p-4 border-start border-4 border-success h-100 position-relative">
             <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="badge bg-success">20% OFF</span>
-              <button class="btn btn-sm btn-outline-custom" onclick="navigator.clipboard.writeText('FRESH20'); showToast('Copied FRESH20 to clipboard!', 'success');">
+              <span class="badge bg-success">10% OFF</span>
+              <button class="btn btn-sm btn-outline-custom" onclick="navigator.clipboard.writeText('SAVE10'); showToast('Copied SAVE10 to clipboard!', 'success');">
                 <i class="bi bi-copy me-1"></i> Copy
               </button>
             </div>
-            <h4 class="fw-bold text-success mb-1">FRESH20</h4>
-            <p class="text-muted small mb-3">Get 20% off your entire grocery order. No minimum order limit.</p>
-            <div class="text-muted small"><i class="bi bi-clock me-1"></i> Valid until end of month</div>
+            <h4 class="fw-bold text-success mb-1">SAVE10</h4>
+            <p class="text-muted small mb-3">Get 10% off on orders above ₹100.</p>
+            <div class="text-muted small"><i class="bi bi-clock me-1"></i> Active for all customers</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="glass-card p-4 border-start border-4 border-primary h-100 position-relative">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="badge bg-primary">20% OFF</span>
+              <button class="btn btn-sm btn-outline-custom" onclick="navigator.clipboard.writeText('SAVE20'); showToast('Copied SAVE20 to clipboard!', 'success');">
+                <i class="bi bi-copy me-1"></i> Copy
+              </button>
+            </div>
+            <h4 class="fw-bold text-primary mb-1">SAVE20</h4>
+            <p class="text-muted small mb-3">Get 20% off on orders above ₹200.</p>
+            <div class="text-muted small"><i class="bi bi-clock me-1"></i> Active for all customers</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="glass-card p-4 border-start border-4 border-danger h-100 position-relative">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="badge bg-danger">₹50 OFF</span>
+              <button class="btn btn-sm btn-outline-custom" onclick="navigator.clipboard.writeText('FIRST50'); showToast('Copied FIRST50 to clipboard!', 'success');">
+                <i class="bi bi-copy me-1"></i> Copy
+              </button>
+            </div>
+            <h4 class="fw-bold text-danger mb-1">FIRST50</h4>
+            <p class="text-muted small mb-3">Flat ₹50 discount on orders above ₹150.</p>
+            <div class="text-muted small"><i class="bi bi-clock me-1"></i> First time & special users</div>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="glass-card p-4 border-start border-4 border-info h-100 position-relative">
             <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="badge bg-info text-dark">$10 OFF</span>
+              <span class="badge bg-info text-dark">₹10 OFF</span>
               <button class="btn btn-sm btn-outline-custom" onclick="navigator.clipboard.writeText('GROCERY10'); showToast('Copied GROCERY10 to clipboard!', 'success');">
                 <i class="bi bi-copy me-1"></i> Copy
               </button>
             </div>
             <h4 class="fw-bold text-info mb-1">GROCERY10</h4>
-            <p class="text-muted small mb-3">Flat $10 discount on orders above $30. Perfect for weekly pantries.</p>
+            <p class="text-muted small mb-3">Flat ₹10 discount on orders above ₹30.</p>
             <div class="text-muted small"><i class="bi bi-clock me-1"></i> Valid for all users</div>
           </div>
         </div>

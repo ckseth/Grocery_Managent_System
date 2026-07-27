@@ -49,10 +49,10 @@
               <i class="bi bi-heart"></i>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count-badge" style="display:none;">0</span>
             </a>
-            <button class="btn btn-primary-custom position-relative px-3" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+            <a href="cart.html" class="btn btn-primary-custom position-relative px-3" title="Shopping Cart">
               <i class="bi bi-basket me-1"></i> Cart
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count-badge" style="display:none;">0</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -63,12 +63,12 @@
   <section class="bg-light py-4 border-bottom">
     <div class="container">
       <h2 class="fw-bold mb-1"><i class="bi bi-heart-fill text-danger me-2"></i>My Saved Wishlist</h2>
-      <p class="text-muted small mb-0">Items you saved for later ordering</p>
+      <p class="text-muted mb-0">Saved items ready for 10-Minute express delivery</p>
     </div>
   </section>
 
-  <!-- Content -->
-  <main class="py-5">
+  <!-- Main Section -->
+  <section class="py-5">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="text-muted fw-semibold">Saved Items (<span id="wishlist-total-count">0</span>)</div>
@@ -77,10 +77,8 @@
         </button>
       </div>
 
-      <div class="row" id="wishlist-grid-container">
-        <!-- Rendered via JS -->
-      </div>
-
+      <div class="row" id="wishlist-grid-container"></div>
+      
       <div id="empty-wishlist-state" class="text-center py-5 glass-card" style="display: none;">
         <i class="bi bi-heart-break fs-1 text-muted"></i>
         <h4 class="fw-bold mt-3">Your Wishlist is Empty</h4>
@@ -88,7 +86,7 @@
         <a href="products.html" class="btn btn-primary-custom btn-sm mt-2">Explore Products</a>
       </div>
     </div>
-  </main>
+  </section>
 
   <!-- Offcanvas Cart Drawer -->
   <div class="offcanvas offcanvas-end glass-card" tabindex="-1" id="cartOffcanvas">
@@ -100,7 +98,7 @@
     <div class="offcanvas-footer p-3 border-top bg-surface">
       <div class="d-flex justify-content-between mb-3">
         <span class="fw-bold">Subtotal:</span>
-        <span class="fw-bold text-success fs-5" id="offcanvas-cart-subtotal">$0.00</span>
+        <span class="fw-bold text-success fs-5" id="offcanvas-cart-subtotal">₹0.00</span>
       </div>
       <div class="d-grid gap-2">
         <a href="cart.html" class="btn btn-outline-custom">View Cart</a>

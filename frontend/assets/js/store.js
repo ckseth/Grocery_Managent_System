@@ -17,15 +17,22 @@ class GroceryStore {
     this.user = this.load(this.USER_KEY, null);
     
     this.validCoupons = {
-      "FRESH20": { type: "percent", value: 20, description: "20% off entire order" },
-      "GROCERY10": { type: "fixed", value: 10.00, description: "$10 off orders above $30" },
-      "FREESHIP": { type: "shipping", value: 100, description: "Free Express Shipping" }
+      "SAVE10": { type: "percent", value: 10, minOrder: 100, description: "10% off on orders above ₹100" },
+      "SAVE20": { type: "percent", value: 20, minOrder: 200, description: "20% off on orders above ₹200" },
+      "FIRST50": { type: "fixed", value: 50.00, minOrder: 150, description: "₹50 off on orders above ₹150" },
+      "FRESH20": { type: "percent", value: 20, minOrder: 0, description: "20% off entire order" },
+      "GROCERY10": { type: "fixed", value: 10.00, minOrder: 30, description: "₹10 off orders above ₹30" },
+      "FREESHIP": { type: "shipping", value: 100, minOrder: 0, description: "Free Express Shipping" }
     };
   }
 
   // --- AUTHENTICATION METHODS ---
   isLoggedIn() {
     return this.user && this.user.isLoggedIn === true;
+  }
+
+  isAdmin() {
+    return this.user && (this.user.role === "admin" || this.user.isAdmin === true);
   }
 
   getUser() {
@@ -145,12 +152,15 @@ class GroceryStore {
     if (this.appliedCoupon) {
       const coupon = this.validCoupons[this.appliedCoupon];
       if (coupon) {
-        if (coupon.type === "percent") {
-          discountAmount = (subtotal * coupon.value) / 100;
-        } else if (coupon.type === "fixed" && subtotal >= 30) {
-          discountAmount = coupon.value;
-        } else if (coupon.type === "shipping") {
-          deliveryFee = 0.00;
+        const minOrder = coupon.minOrder || 0;
+        if (subtotal >= minOrder) {
+          if (coupon.type === "percent") {
+            discountAmount = (subtotal * coupon.value) / 100;
+          } else if (coupon.type === "fixed") {
+            discountAmount = Math.min(coupon.value, subtotal);
+          } else if (coupon.type === "shipping") {
+            deliveryFee = 0.00;
+          }
         }
       }
     }
@@ -169,7 +179,12 @@ class GroceryStore {
 
   applyCoupon(code) {
     const normalizedCode = code.trim().toUpperCase();
-    if (this.validCoupons[normalizedCode]) {
+    const coupon = this.validCoupons[normalizedCode];
+    if (coupon) {
+      const subtotal = this.cart.reduce((total, item) => total + (parseFloat(item.price || 0) * parseInt(item.quantity || 1, 10)), 0);
+      if (coupon.minOrder && subtotal < coupon.minOrder) {
+        return { success: false, message: `Minimum order amount for ${normalizedCode} is ₹${coupon.minOrder}.` };
+      }
       this.appliedCoupon = normalizedCode;
       this.save(this.COUPON_KEY, this.appliedCoupon);
       this.notifyUpdate();
@@ -239,7 +254,7 @@ class GroceryStore {
       paymentMethod: paymentMethod,
       totals: totals,
       status: "Order Placed",
-      estimatedDelivery: "Today, within 45 mins"
+      estimatedDelivery: "Today, within 10 mins"
     };
 
     this.orders.unshift(newOrder);

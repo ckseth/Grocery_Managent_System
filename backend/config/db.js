@@ -6,7 +6,7 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`MongoDB Connection Error: ${error.message}`);
-    // Do not exit process in dev if mongo is not running locally; allow graceful fallback
+   
     if (process.env.NODE_ENV === 'production') {
       process.exit(1);
     }
